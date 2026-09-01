@@ -1,0 +1,24 @@
+services:
+  app:
+    build: .                      # your CUSTOM image — built from the Dockerfile above
+    container_name: demo-app
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/notesdb
+      PORT: 3000
+    depends_on:
+      - mongo
+    volumes:
+      - ./src:/app/src            # live-mounts your local code into the container for dev
+
+  mongo:
+    image: mongo:7                # PUBLIC image — pulled straight from Docker Hub
+    container_name: demo-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db       # named volume so DB data survives container restarts
+
+volumes:
+  mongo-data:
