@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Change these to match your registry / Docker Hub username
-        IMAGE_NAME = "yourdockerhubuser/docker-demo-app"
+        IMAGE_NAME = "eirage/docker-app"
         IMAGE_TAG  = "${env.BUILD_NUMBER}"
         REGISTRY_CREDENTIALS = credentials('dockerhub-credentials') // set up in Jenkins Credentials
     }
